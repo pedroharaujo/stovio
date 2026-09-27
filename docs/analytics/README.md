@@ -13,6 +13,12 @@ legal/store declarations. Those remain gated by D-020 and P6 clearance.
 Production builds therefore select a hard no-op adapter even when the stored
 preference is true; a later approved release task must explicitly remove that gate.
 
+P4-T02 now has a [synthetic observed cohort reference model](observed-cohort-model.md)
+for coin-only arithmetic, missing inputs, completed windows and duplicate/scope
+checks, validated with generated PostgreSQL data. D-037 places ad revenue outside
+this MVP slice. Authoritative source joins and BigQuery execution remain open;
+this does not complete P4-T02 or authorize real collection, export or paid spend.
+
 ## Rules shared by every event
 
 - Analytics is optional and consent-gated. No event may leave the app before
