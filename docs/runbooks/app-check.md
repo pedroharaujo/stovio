@@ -74,9 +74,9 @@ by default.
 4. Repeat authorization cases with missing/invalid Firebase ID tokens. App Check
    success alone must never create a user, grant an entitlement, bypass rights, or
    expose playable media. Reusing a normal App Check token is not a grant and does
-   not bypass the existing request-id/reward idempotency controls. The Python Admin
-   SDK does not provide the Node-only limited-use-token replay beta, so this change
-   makes no per-request replay-prevention claim.
+   not bypass the existing request-id/reward idempotency controls. This integration
+   does not consume limited-use tokens and makes no per-request replay-prevention
+   claim.
 5. Inspect privacy-safe request records and controlled errors for absence of App
    Check tokens, Firebase ID tokens, signed URLs, provider payloads, full IPs, and
    personal identifiers. Record only tested revision/configuration IDs and pass/fail
