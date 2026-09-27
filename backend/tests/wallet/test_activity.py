@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 import pytest
 from django.test import Client
@@ -36,10 +36,14 @@ def test_activity_shows_purchase_and_unlock_without_another_owners_lines(
     other = get_or_create_profile("activity-other")
     wallet = Wallet.objects.create(user_profile=owner)
     other_wallet = Wallet.objects.create(user_profile=other)
+    # Legitimate identifiers may contain another owner's coin amount as text.
     purchase = CoinLedgerEntry.objects.create(
-        wallet=wallet, reference=uuid4(), kind="purchase", amount=10
+        wallet=wallet,
+        reference=UUID("00000000-0000-4000-8000-000000000099"),
+        kind="purchase",
+        amount=10,
     )
-    CoinLedgerEntry.objects.create(
+    other_purchase = CoinLedgerEntry.objects.create(
         wallet=other_wallet, reference=uuid4(), kind="purchase", amount=99
     )
     series, _first = make_published_title(title="Activity Harbor")
@@ -64,6 +68,7 @@ def test_activity_shows_purchase_and_unlock_without_another_owners_lines(
     assert unlock.status_code == 200
 
     response = client.get("/v1/wallet/activity", **headers())
+    assert response.status_code == 200
     body = response.json()
     assert body["has_more"] is False
     assert [entry["kind"] for entry in body["entries"]] == ["unlock", "purchase"]
@@ -75,8 +80,18 @@ def test_activity_shows_purchase_and_unlock_without_another_owners_lines(
     assert body["entries"][1]["amount"] == 10
     assert body["entries"][1]["balance_after"] == 10
     assert body["entries"][1]["episode_id"] is None
-    assert "99" not in response.content.decode()
-    assert str(wallet.pk) not in response.content.decode()
+    assert str(other_purchase.reference) not in {entry["id"] for entry in body["entries"]}
+    assert set(body) == {"entries", "has_more"}
+    for entry in body["entries"]:
+        assert set(entry) == {
+            "id",
+            "kind",
+            "amount",
+            "balance_after",
+            "created_at",
+            "episode_id",
+            "episode_title",
+        }
 
     episode.series.takedown = True
     episode.series.save(update_fields=["takedown"])
