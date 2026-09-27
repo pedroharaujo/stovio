@@ -34,7 +34,7 @@ function definitePurchaseFailure(
 ): 'cancelled' | 'product_unavailable' | 'purchase_not_allowed' | null {
   if (typeof error !== 'object' || error === null || !('code' in error)) return null;
   if (error.code === Purchases.PURCHASES_ERROR_CODE.PURCHASE_CANCELLED_ERROR) return 'cancelled';
-  // Android 10.20.0: receipt/consume/ack failures do not surface as this native rejection.
+  // Android 10.22.1: receipt/consume/ack failures do not surface as this native rejection.
   // Recheck that assumption on SDK upgrades; see the declined-payment diagnosis plan.
   if (error.code === Purchases.PURCHASES_ERROR_CODE.PURCHASE_NOT_ALLOWED_ERROR)
     return 'purchase_not_allowed';
