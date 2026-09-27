@@ -16,7 +16,7 @@
     </header>
     <main>
       <h1>Delete your Stovio account</h1>
-      <p class="updated">Last updated: 26 September 2026</p>
+      <p class="updated">Last updated: 27 September 2026</p>
 
       <p>
         This page explains how to delete your account in the
@@ -38,9 +38,11 @@
           </li>
         </ol>
         <p>
-          Your Stovio data is deleted straight away and you are signed out. Your
-          sign-in account is normally removed at the same time; if that step is
-          delayed, we complete it as soon as possible.
+          Your profile and its active account data are removed from Stovio's
+          database and you are signed out. Your sign-in account is normally
+          removed at the same time; if that step is delayed, cleanup remains
+          pending. This does not confirm that every provider has finished
+          deleting data. The records described below can remain.
         </p>
       </div>
 
@@ -73,12 +75,13 @@
       <h2>What is deleted</h2>
       <ul>
         <li>
-          Your Stovio sign-in account (email/password or Google sign-in link).
+          Your Stovio sign-in account (email/password or Google sign-in link),
+          once sign-in cleanup finishes.
         </li>
         <li>Your profile, language, country and privacy choices.</li>
         <li>
-          Your watch history, playback positions and settings such as automatic
-          unlocking.
+          Your signed-in watch history, playback positions and settings such as
+          automatic unlocking.
         </li>
         <li>Your access to episodes you unlocked, and any remaining coins.</li>
       </ul>
@@ -86,33 +89,51 @@
         Deletion cannot be undone. Remaining coins and unlocked episodes cannot
         be recovered or moved to another account.
       </p>
+      <p>
+        History saved without signing in is stored separately under a random
+        device identifier. Deleting your account or clearing app storage does
+        not erase that history from our servers. Contact us about requests
+        involving this history.
+      </p>
 
       <h2>What is kept, and for how long</h2>
+      <p>
+        Stovio is currently being tested. The target periods below have been
+        selected, but their enforcement is not yet verified and they are not
+        guaranteed maximum storage periods.
+      </p>
       <ul>
         <li>
           <strong>Coin purchase and spending records</strong>, separated from
-          your sign-in account: kept for as long as needed to meet legal
-          accounting and tax obligations and to handle refunds, chargebacks and
-          disputes, then deleted.
+          your sign-in account: retained for accounting, refunds, chargebacks,
+          disputes and prevention of duplicate transactions. The required
+          retention period and deletion or anonymization schedule are still
+          under review.
         </li>
         <li>
           <strong>A record that the deletion happened</strong>, without your
-          name or email: up to three years, to prove the request was completed.
+          name or email: currently retained without automatic expiry. The target
+          is three years after completion. Pending sign-in cleanup keeps the
+          account identifier until cleanup succeeds.
         </li>
         <li>
-          <strong>Support emails</strong>: up to 12 months after your request is
-          closed.
+          <strong>Support emails</strong>: the target is 12 months after your
+          request is closed, subject to justified legal or dispute holds.
+          Mailbox expiry settings have not yet been verified.
         </li>
         <li>
-          <strong>Backups</strong>: deleted data can remain in backups for up to
-          35 days before they expire.
+          <strong>Backups</strong>: the target is a rolling 35-day expiry.
+          Actual expiry and removal of deleted data after a restore have not yet
+          been verified.
         </li>
       </ul>
       <p>
         Google Play keeps its own record of your purchases under
         <a href="https://policies.google.com/privacy">Google's privacy policy</a
         >. RevenueCat, which verifies purchases for us, holds purchase records
-        linked to a random identifier rather than your name or email.
+        linked to a random identifier rather than your name or email. Removing
+        your Stovio profile does not confirm that RevenueCat records or
+        historical analytics events have been deleted by those providers.
       </p>
 
       <p>More detail: <a href="../privacy/">Stovio privacy policy</a>.</p>

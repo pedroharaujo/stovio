@@ -16,12 +16,17 @@
     </header>
     <main>
       <h1>Privacy policy</h1>
-      <p class="updated">Last updated: 26 September 2026</p>
+      <p class="updated">Last updated: 27 September 2026</p>
 
       <p>
         This policy explains what personal information the Stovio Android app
         and its services handle, why, who receives it, how long it is kept, and
         the choices and rights you have.
+      </p>
+      <p>
+        Stovio is currently being tested. Some retention limits and provider
+        settings are still under review. The sections below explain current
+        handling and the limits we are working toward.
       </p>
 
       <h2>Who we are</h2>
@@ -37,9 +42,10 @@
 
       <h2>What Stovio does</h2>
       <p>
-        Stovio lets you watch short vertical drama series. You need an account
-        to use the app. Some episodes are free; others are unlocked with coins
-        that you buy through Google Play. Stovio does not show advertising.
+        Stovio lets you watch short vertical drama series. You need to sign in
+        to open Home and Wallet, buy coins and unlock paid episodes. Some
+        episodes are free; others are unlocked with coins that you buy through
+        Google Play. Stovio does not show advertising.
       </p>
 
       <h2>Information we handle</h2>
@@ -62,6 +68,13 @@
         next episode. This lets you continue watching and keep your unlocked
         episodes on any device where you sign in.
       </p>
+      <p>
+        Eligible free episodes can also be opened through a direct episode link
+        without signing in. Progress saved without signing in is stored on our
+        servers under a random identifier kept on your device. This history is
+        separate from your account: deleting the account or clearing app storage
+        does not erase it from our servers.
+      </p>
 
       <h3>Coins and purchases</h3>
       <p>
@@ -78,12 +91,13 @@
       <p>
         When the app connects to our services, we and our providers process
         information needed to deliver and secure the service, such as your IP
-        address, request times, app version and technical identifiers. Stovio
-        uses Firebase App Check with Google Play Integrity to confirm that
-        requests come from the genuine app. The app stores a random device
-        identifier and, while a purchase or unlock is being completed, its
-        reference in encrypted storage on your phone so it can finish safely if
-        the app is interrupted. These do not contain payment card details.
+        address, request times, app version and technical identifiers. The app
+        supports Firebase App Check with Google Play Integrity to help verify
+        app requests when enabled; its use depends on the test build and service
+        configuration. The app stores a random device identifier and, while a
+        purchase or unlock is being completed, its reference in encrypted
+        storage on your phone so it can finish safely if the app is interrupted.
+        These do not contain payment card details.
       </p>
 
       <h3>Optional analytics</h3>
@@ -138,8 +152,9 @@
 
       <h2>Who receives information</h2>
       <p>
-        Information is available only to us and to the service providers we use
-        to run Stovio, who may use it only to provide their service to us:
+        We use the following providers to run Stovio. Each receives the
+        information needed for the services listed here. Their roles, terms and
+        processing locations are still being reviewed for the release:
       </p>
       <ul>
         <li>
@@ -150,6 +165,7 @@
         <li>Supabase, for our database;</li>
         <li>RevenueCat, for purchase verification;</li>
         <li>Bunny.net, for video delivery.</li>
+        <li>GitHub Pages, for hosting these public information pages.</li>
       </ul>
       <p>
         We may also disclose information when the law requires it, or to protect
@@ -159,42 +175,67 @@
       <h2>International transfers</h2>
       <p>
         Some of these providers may process information outside the European
-        Economic Area, including in the United States. Where they do, transfers
-        rely on safeguards recognised by EU law, such as the European
-        Commission's standard contractual clauses or the EU-U.S. Data Privacy
-        Framework.
+        Economic Area, including in the United States. The applicable locations,
+        contracts and transfer safeguards are still under review for the
+        release. We have not yet verified a transfer safeguard for each
+        provider.
       </p>
 
       <h2>How long we keep information</h2>
+      <p>
+        The periods described as targets below have been selected, but cleanup
+        and provider settings have not yet been verified for every category.
+        They are not currently guaranteed maximum storage periods.
+      </p>
       <ul>
         <li>
-          <strong>Account, preferences and viewing activity</strong>: while your
-          account is active, and deleted when you delete your account. If you do
-          not sign in or make a purchase for 24 months, we will notify you and
-          then delete your preferences and viewing history, while keeping what
-          is needed for you to recover episodes you paid for.
+          <strong>Account, preferences and signed-in viewing activity</strong>:
+          kept while the account exists and removed from our active database
+          following verified account deletion. Automatic inactivity cleanup is
+          not yet enabled. Our target is to give notice after 24 months without
+          sign-in or purchase activity, then remove nonessential preferences and
+          viewing history while preserving access to purchased episodes.
         </li>
         <li>
-          <strong>Coin and purchase records</strong>: kept for as long as needed
-          to meet legal accounting and tax obligations and to handle refunds,
-          chargebacks and disputes, then deleted. When you delete your account,
-          these records are separated from your sign-in account.
+          <strong>Viewing activity saved without signing in</strong>: stored
+          separately under the device identifier. The target is deletion 12
+          months after the last saved episode progress, but scheduled expiry is
+          not yet enabled.
+        </li>
+        <li>
+          <strong>Coin and purchase records</strong>: retained for accounting,
+          refunds, chargebacks, disputes and prevention of duplicate
+          transactions. Account deletion separates these records from the
+          sign-in account; it does not erase them. The required retention period
+          and deletion or anonymization schedule are still under review.
         </li>
         <li>
           <strong>Proof that an account was deleted</strong>: a minimal record
-          without your name or email, for up to three years.
+          without your name or email is currently retained without automatic
+          expiry. The target is three years after deletion is completed. Pending
+          sign-in cleanup keeps the account identifier until that cleanup
+          succeeds.
         </li>
         <li>
-          <strong>Support emails</strong>: up to 12 months after your request is
-          closed.
+          <strong>Support emails</strong>: the target is 12 months after your
+          request is closed, subject to justified legal or dispute holds.
+          Mailbox expiry settings have not yet been verified.
         </li>
         <li>
-          <strong>Server logs</strong>: up to six months, or up to 12 months
-          when needed to investigate a specific security incident.
+          <strong>Server logs</strong>: the target is six months, or up to 12
+          months for a specific security incident. Provider-controlled mandatory
+          audit logs can have longer periods; the complete set of provider
+          settings is still under review.
         </li>
-        <li><strong>Backups</strong>: up to 35 days.</li>
         <li>
-          <strong>Optional analytics</strong>: up to 14 months after collection.
+          <strong>Backups</strong>: the target is a rolling 35-day expiry.
+          Backup expiry and removal of deleted data after a restore have not yet
+          been verified.
+        </li>
+        <li>
+          <strong>Optional analytics</strong>: the target is 14 months from
+          collection, without extending it when you return. Provider retention
+          settings and deletion of historical events have not yet been verified.
         </li>
       </ul>
 
@@ -205,7 +246,10 @@
         <strong>Delete account</strong>. You can also request deletion without
         the app. See
         <a href="../delete-account/">Delete your Stovio account</a> for the
-        steps and for what is deleted and kept.
+        steps and for what is deleted and kept. Removing your Stovio profile
+        does not confirm that sign-in cleanup or deletion by every provider has
+        finished. Purchase records and historical analytics can remain with
+        providers after local account deletion.
       </p>
 
       <h2>Your rights</h2>
@@ -226,17 +270,16 @@
 
       <h2>Children</h2>
       <p>
-        Stovio is intended for adults. You must be 18 or older to create an
-        account. If you believe a child has given us personal information,
-        contact us and we will delete it.
+        If you believe a child has given us personal information, contact us and
+        we will delete it.
       </p>
 
       <h2>Security</h2>
       <p>
-        We use encrypted connections, signed-in requests, short-lived video
-        access, App Check and server-side checks for every purchase, coin
-        balance and unlock. No system can be perfectly secure, but we work to
-        protect your information.
+        We use encrypted connections, short-lived video access and server-side
+        checks for purchases, coin balances and unlocks. Purchases and paid
+        unlocks require a signed-in account. No system can be perfectly secure,
+        but we work to protect your information.
       </p>
 
       <h2>Changes to this policy</h2>
