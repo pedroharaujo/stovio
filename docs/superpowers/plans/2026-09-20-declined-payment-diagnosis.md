@@ -99,3 +99,48 @@ recovery defect. No additional purchase was initiated to record this result.
 The founder explicitly requested moving on from repeated testing. Do not repeat
 this scenario or expand its implementation without a new failure or relevant
 code/SDK change. Other lifecycle and production gates remain separate.
+
+## SDK upgrade audit — 2026-09-27
+
+PR #201 updates React Native Purchases to 10.10.2, hybrid-common to 19.3.1,
+Android Purchases to 10.22.1 and iOS Purchases to 5.90.2. Independent source
+review rechecked the financial error-routing assumption behind the narrow
+code-3 rejection handling:
+
+- `BillingWrapper.kt`, `common/errors.kt` and
+  `PostTransactionWithProductDetailsHelper.kt` have identical Git blob hashes
+  between Android 10.20.0 and 10.22.1.
+- `PostReceiptHelper.kt` changes owner-bound cache/listener calls, preserving
+  receipt-error routing. The update avoids applying a previous owner's customer
+  information after an identity change.
+- The new bridge normalizer converts numeric error codes to strings and derives
+  cancellation only from code `1`. Codes `3` and `5` keep their existing meanings;
+  unknown errors remain uncertain results.
+
+Verification:
+
+- `pnpm install --frozen-lockfile`: passed.
+- `pnpm mobile:check`: lint, formatting, types, 53 suites / 534 tests and mobile
+  configuration checks passed. The existing adapter/coordinator cases cover
+  explicit rejection, cancellation, unknown results, ownership/session changes,
+  contradictory responses and pending-marker preservation.
+- A one-off Node smoke against the installed hybrid-common 19.3.1 normalizer
+  passed 17 generated cases: top-level/nested codes `1`, `3`, `5`, `0`, `36` and
+  `99`, plus unsupported/null values. It checked string normalization,
+  cancellation classification and preservation of Error identity/prototype.
+- With `scripts/android_jdk.py::prepare_android_env()`,
+  `mobile/android/gradlew.bat :app:assembleDebug -PreactNativeArchitectures=x86_64 --max-workers=1 --no-parallel --console=plain`:
+  passed (503 tasks, 5m 25s). Process-only configuration disabled dotenv loading,
+  purchases, ads, App Check and analytics, with local API/emulator auth. This was
+  a debug compilation only; no app was installed or purchase initiated. Existing
+  upstream Gradle deprecation warnings remain; there were no build errors.
+
+This audit does not repeat or replace the historical device result above. Fresh
+device usability/lifecycle checks remain in the D-029 / P6-T03 final validation
+pass with production checkout disabled. General unknown-attempt recovery in
+#164 and financial release scenarios remain separate activation gates; this
+upgrade does not authorize clearing uncertain pending markers.
+
+Sources: [Android 10.22.1 release](https://github.com/RevenueCat/purchases-android/releases/tag/10.22.1),
+[Android source comparison](https://github.com/RevenueCat/purchases-android/compare/10.20.0...10.22.1),
+and [hybrid-common 19.3.1 normalizer](https://github.com/RevenueCat/purchases-hybrid-common/blob/19.3.1/typescript/src/errorNormalizer.ts).
