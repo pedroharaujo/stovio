@@ -93,4 +93,9 @@ def test_local_rewarded_unit_configuration(mode: str, unit_id: str | None, allow
     else:
         assert result.returncode != 0
         assert "ImproperlyConfigured" in result.stderr
-        assert "REWARDED_ADS" in result.stderr
+        expected_error = (
+            "Local settings cannot enable production rewarded ads."
+            if mode == "production"
+            else "REWARDED_ADS_UNIT_ID must be a valid AdMob ad unit ID"
+        )
+        assert expected_error in result.stderr
