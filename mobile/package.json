@@ -22,7 +22,7 @@
     "@stovio/api-client": "workspace:*",
     "expo": "57.0.25",
     "expo-build-properties": "~57.0.22",
-    "expo-constants": "~57.0.19",
+    "expo-constants": "~57.0.20",
     "expo-crypto": "~57.0.3",
     "expo-device": "~57.0.2",
     "expo-router": "~57.0.23",
